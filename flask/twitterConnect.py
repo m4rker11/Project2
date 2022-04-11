@@ -4,9 +4,7 @@ import requests
 def get_id(username):
     url = "https://api.twitter.com/2/users/by?usernames=" + username
     payload = {}
-    headers = {'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANiRbAEAAAAAT0NxrtOvZEqLLnG5VdCSPFqPOCw%3Dm5Ktdnc7g7HGCv7cDWbYNjuHpTh0WzoyoWYJZdOqs1D487niHa',
-    'Cookie': 'guest_id=v1%3A164940024030665997'
-    }
+    headers = {'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANiRbAEAAAAAT0NxrtOvZEqLLnG5VdCSPFqPOCw%3Dm5Ktdnc7g7HGCv7cDWbYNjuHpTh0WzoyoWYJZdOqs1D487niHa'}
     id_response = requests.request("GET", url, headers = headers, data = payload).json()
     twitter_id = id_response['data'][0]['id'] 
     return twitter_id
@@ -15,9 +13,7 @@ def get_id(username):
 def get_tweets(twitter_id):
     url = "https://api.twitter.com/2/users/" + twitter_id + "/tweets?max_results=100&tweet.fields=public_metrics"
     payload = {}
-    headers = {'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANiRbAEAAAAAT0NxrtOvZEqLLnG5VdCSPFqPOCw%3Dm5Ktdnc7g7HGCv7cDWbYNjuHpTh0WzoyoWYJZdOqs1D487niHa',
-    'Cookie': 'guest_id=v1%3A164940024030665997'
-    }
+    headers = {'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANiRbAEAAAAAT0NxrtOvZEqLLnG5VdCSPFqPOCw%3Dm5Ktdnc7g7HGCv7cDWbYNjuHpTh0WzoyoWYJZdOqs1D487niHa'}
     tweets = requests.request("GET", url, headers = headers, data = payload).json()
     return tweets
 
