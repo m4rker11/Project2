@@ -1,24 +1,4 @@
-# initialize a simple flask application
-from flask import Flask, request, jsonify
-from flask_cors import CORS
 import requests
-import json
-from twitterConnect import get_tweets_with_username
-#Set up Flask:
-app = Flask(__name__)
-#Set up Flask to bypass CORS:
-cors = CORS(app)
-#Create the receiver API POST endpoint:
-@app.route("/receiver", methods=["POST"])
-def postME():
-    data = request.get_json()
-    #  data = jsonify(data)
-    print(data["twitter"])
-    tweets = get_tweets_with_username(data["twitter"])
-    return jsonify(tweets)
-    print(tweets)
-    return data
-
 # Create Twitter API function
 # Pass in username string to query API for user ID then query again for tweets
 def get_id(username):
@@ -41,6 +21,7 @@ def get_tweets(twitter_id):
     tweets = requests.request("GET", url, headers = headers, data = payload).json()
     return tweets
 
-
-if __name__ == "__main__": 
- app.run(debug=True)
+def get_tweets_with_username(username):
+    twitter_id = get_id(username)
+    tweets = get_tweets(twitter_id)
+    return tweets

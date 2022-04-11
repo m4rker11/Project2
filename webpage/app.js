@@ -24,7 +24,7 @@ app.post('/addTwitter', (req, res) => {
     // 'Accept': 'application/json'
     // },
     // Strigify the payload into JSON:
-    body:JSON.stringify(req.body)}).then(res=>{
+    twitter: (req.body.twitter)}).then(res=>{
     if(res.ok){
     return res.json()
     }else{
