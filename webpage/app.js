@@ -50,7 +50,9 @@ app.get('/viewTweets', (req, res) => {
     // parse json file to json object
     const jsonObj = JSON.parse(jsonFile)
     // render the view
-    res.render('tweets', {tweets: jsonObj.data})
+    // surround JsonObj.stock with " " to make it a string
+    jsonObj.stock = JSON.stringify(jsonObj.stock)
+    res.render('tweets', {tweets: jsonObj.data, stock: jsonObj.stock},)
 
 });
 
