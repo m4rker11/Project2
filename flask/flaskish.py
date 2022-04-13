@@ -42,6 +42,54 @@ def postME():
     ################FOR TYLER#############################
     
 
+    # Load finalized_model.sav model
+    import pickle
+    model = pickle.load(open('finalized_model.sav', 'rb'))
+
+    import re
+    import nltk
+
+    nltk.download('stopwords')
+    from nltk.corpus import stopwords
+    from nltk.stem.porter import PorterStemmer
+
+    train_corpus = []
+
+    for i in range(len(tweets['data'])):
+        review = tweets['data'][i]['text']
+        # review = re.sub('[^a-zA-Z]', ' ', tweets['data'][i]['text'][i])
+        review = review.lower()
+        review = review.split()
+        
+        ps = PorterStemmer()
+        
+        # stemming
+        review = [ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
+        
+        # joining them back with space
+        review = ' '.join(review)
+        print(review)
+        train_corpus.append(review)
+
+    from sklearn.feature_extraction.text import CountVectorizer
+
+    cv = pickle.load(open('cv-transform.sav', 'rb'))
+    x = cv.transform(train_corpus).toarray()
+
+    print(x.shape)
+
+    # Predicting the Test set results
+    y_pred = model.predict(x)
+
+    
+    for item in tweets['data']:
+        item["sentiment"] = y_pred[tweets['data'].index(item)]
+
+
+
+
+
+
 
     #save the data to a file in a json structure
     with open('data.json', 'w') as outfile:
