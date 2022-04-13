@@ -13,8 +13,41 @@ cors = CORS(app)
 def postME():
     data = request.get_json()
     #  data = jsonify(data)
-    print(data["twitter"])
+    data = data["twitter"]
+    print(data)
+
+
+
+
     tweets = get_tweets_with_username(data["twitter"])
+    print(tweets)
+
+    
+    ################FOR TYLER#############################
+    # data has property stock and Alts  (data["stock"], data["Alts"])
+    # check if tweets have any of those words (those are the ones we will sentiment)
+    # if they do add a property called present to it
+    # use this to get you started
+
+    words = [data.stock] + data.Alts.split(" ")
+    for item in tweets.data:
+        for word in words:
+            if word in item.text:
+                item.present = True
+                break
+            else:
+                item.present = False
+    # this might simply work already i didnt test it 
+    ################FOR TYLER#############################
+    
+
+
+    #save the data to a file in a json structure
+    with open('data.json', 'w') as outfile:
+        json.dump(tweets, outfile)
+
+    
+
     return jsonify(tweets)
     print(tweets)
     return data
