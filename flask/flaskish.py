@@ -30,14 +30,7 @@ def postME():
     # # if they do add a property called present to it
     # # use this to get you started
 
-    # words = [data.stock] + data.Alts.split(" ")
-    # for item in tweets.data:
-    #     for word in words:
-    #         if word in item.text:
-    #             item.present = True
-    #             break
-    #         else:
-    #             item.present = False
+    
     # this might simply work already i didnt test it 
     ################FOR TYLER#############################
     
@@ -54,7 +47,7 @@ def postME():
     from nltk.stem.porter import PorterStemmer
 
     train_corpus = []
-
+    print(tweets)
     for i in range(len(tweets['data'])):
         review = tweets['data'][i]['text']
         # review = re.sub('[^a-zA-Z]', ' ', tweets['data'][i]['text'][i])
@@ -80,11 +73,20 @@ def postME():
 
     # Predicting the Test set results
     y_pred = model.predict(x)
-
+    words = [data['stock']] + data['Alts'].split(" ")
+    print(words)
+    for item in tweets['data']:
+        for word in words:
+            # if word part of the string in the tweet['text']
+            if word in item['text'].lower():
+                item['present'] = True
+                break
+            else:
+                item['present'] = False
     
     for item in tweets['data']:
-        item["sentiment"] = y_pred[tweets['data'].index(item)]
-
+        item["sentiment"] = int(y_pred[tweets['data'].index(item)])
+        item["created_at"] = item["created_at"][:-14]+'\n'+item["created_at"][-13:-8]
 
 
 

@@ -11,7 +11,7 @@ def get_id(username):
 
 # Create function to use twitter id to query for user tweets
 def get_tweets(twitter_id):
-    url = "https://api.twitter.com/2/users/" + twitter_id + "/tweets?max_results=100&tweet.fields=public_metrics"
+    url = "https://api.twitter.com/2/users/" + twitter_id + "/tweets?max_results=100&tweet.fields=public_metrics,created_at"
     payload = {}
     headers = {'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANiRbAEAAAAAT0NxrtOvZEqLLnG5VdCSPFqPOCw%3Dm5Ktdnc7g7HGCv7cDWbYNjuHpTh0WzoyoWYJZdOqs1D487niHa'}
     tweets = requests.request("GET", url, headers = headers, data = payload).json()
