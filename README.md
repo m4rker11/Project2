@@ -6,19 +6,18 @@ The purpose of this project is to create an application that performs a sentimen
 
 ## Technologies Used
 
-
+The front end of the application is coded in Javascript. The backend and machine learning portions of the application are coded in Python. Flask was used to communicate between the front and back ends. The machine learning algorithms emphasized the scikit-learn library to run Logistic Regression, Decision Tree Classifier, and Random Forest Classifier. 
   
 ---
 
-## Implementation
-
-
-
----
-
 ## Usage
+The webpage allows a user to input a Twitter handle, stock or cryptocurrency of their choice from Tradingview, and any other keywords. Once submitted, the app queries the Twitter API to return the tweets of the handle that was entered. These tweets are run through the machine learning algorithms on the back end and ultimately display in the webpage along with a table that shows the number of likes and retweets, whether or not the keywords were mentioned in the tweet, the timestamp of the tweet, and a sentiment score based on the results of the sentiment analysis. The screenshot below shows the results of a query:
 
+![app](https://raw.githubusercontent.com/m4rker11/Project2/main/p2app.png)
 
+The second great feature of the webpage is an interactive widget from TradingView that allows the user to display the simple moving average for the stock or cryptocurreny that they chose. By scrolling through the returned tweets and analyzing whether or not the tweet had any sentiment score or if the keywords entered were present in the tweet, the user can simply check the timestamp of the tweet and then use the TradingView chart to the right to physically maneuver to that specific date and time to see how the price of the stock was effected in the aftermath of the tweet being posted. The following shows the webpage with TradingView enabled on the right side of the screen:
+
+![doge](https://github.com/m4rker11/Project2/blob/main/doge.png)
 
 ---
 
