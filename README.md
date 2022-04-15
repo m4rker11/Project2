@@ -21,6 +21,12 @@ The second great feature of the webpage is an interactive widget from TradingVie
 
 ---
 
+## Conclusion and Next Steps
+
+The limited data that we used for the sentiment analysis led to underwhelming results. We were not able to train the models ideally which led to our results not being as conclusive or concrete as we would like to see. We used a finance-centered dataset for the sentiment analysis, but in the future we can just use general datasets with much more training data and our model would produce stronger results. Other next steps we could implement include continuing to build out the application with a creative user interface, research other API implementation besides just Twitter, and integrate a trading platform to make real-time financial decisions using information received from the sentiment analysis.
+
+---
+
 ## Contributors
 
 Project 2 Team 6 Group Members are Mark Zarutin, Jerry Ross, Jay Sen, and Tyler Castleberry.
