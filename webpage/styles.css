@@ -1,0 +1,83 @@
+input[type=text] {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  width: 13%;
+}
+body {
+  background-image: url("3660006.jpg");
+  background-color: #cccccc;
+  scale: 0.8;
+ }
+input[type=submit],button {
+  background-color: #d5ac4e;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  width: 12.9%;
+}
+.BUTTT{
+  position: absolute;
+  top: 16%;
+  left: 26.68%;
+}
+
+.ADDD{
+  position: absolute;
+  top: 16%;
+  left: .48%;
+}
+.VIEWWW{
+  position: absolute;
+  top: 16%;
+  left: 13.58%;
+}
+
+button {
+  position: absolute;
+  left: 26.6%;
+  top: 16.7%;
+}
+input[type=submit]:hover, button:hover {
+  background-color: green;
+}
+form {
+  margin-top: 20px;
+  color : #fff;
+}
+.about {
+  position: absolute;
+  top: -5%;
+  left: 40%;
+  display: inline-block;
+  padding: 20px;
+  margin-top: 20px;
+  width: 60%;
+}
+table {
+  position: absolute;
+  top: 25%;
+  left: 0%;
+  border-collapse: collapse;
+  width: 50%;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.tradingview-widget-container {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+}
+.hate{
+  position: absolute;
+  top: 125%;
+  left: 95%;
+}

@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(express.static(__dirname));
+
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
@@ -29,8 +32,6 @@ app.post('/addTwitter', (req, res) => {
     twitter: (req.body)}).then(res=>{
     if(res.ok){
     return res.json()
-    }else{
-    alert("something is wrong")
     }
     }).then(jsonResponse=>{
     
@@ -43,6 +44,14 @@ app.post('/addTwitter', (req, res) => {
     res.render('tweets');
 });
 
+function togglegraph() {
+    var node = document.getElementById('graphs');
+    if (node.style.visibility=='visible') {
+        node.style.visibility = 'hidden';
+    }
+    else
+        node.style.visibility = 'visible'
+}
 app.get('/viewTweets', (req, res) => {
     
     // load json file from folder

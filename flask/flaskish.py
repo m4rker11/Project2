@@ -30,17 +30,67 @@ def postME():
     # # if they do add a property called present to it
     # # use this to get you started
 
-    # words = [data.stock] + data.Alts.split(" ")
-    # for item in tweets.data:
-    #     for word in words:
-    #         if word in item.text:
-    #             item.present = True
-    #             break
-    #         else:
-    #             item.present = False
+    
     # this might simply work already i didnt test it 
     ################FOR TYLER#############################
     
+
+    # Load finalized_model.sav model
+    import pickle
+    model = pickle.load(open('finalized_model.sav', 'rb'))
+
+    import re
+    import nltk
+
+    nltk.download('stopwords')
+    from nltk.corpus import stopwords
+    from nltk.stem.porter import PorterStemmer
+
+    train_corpus = []
+    print(tweets)
+    for i in range(len(tweets['data'])):
+        review = tweets['data'][i]['text']
+        # review = re.sub('[^a-zA-Z]', ' ', tweets['data'][i]['text'][i])
+        review = review.lower()
+        review = review.split()
+        
+        ps = PorterStemmer()
+        
+        # stemming
+        review = [ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
+        
+        # joining them back with space
+        review = ' '.join(review)
+        print(review)
+        train_corpus.append(review)
+
+    from sklearn.feature_extraction.text import CountVectorizer
+
+    cv = pickle.load(open('cv-transform.sav', 'rb'))
+    x = cv.transform(train_corpus).toarray()
+
+    print(x.shape)
+
+    # Predicting the Test set results
+    y_pred = model.predict(x)
+    words = [data['stock']] + data['Alts'].split(" ")
+    print(words)
+    for item in tweets['data']:
+        for word in words:
+            # if word part of the string in the tweet['text']
+            if word in item['text'].lower():
+                item['present'] = True
+                break
+            else:
+                item['present'] = False
+    
+    for item in tweets['data']:
+        item["sentiment"] = int(y_pred[tweets['data'].index(item)])
+        item["created_at"] = item["created_at"][:-14]+'\n'+item["created_at"][-13:-8]
+
+
+
+
 
 
     #save the data to a file in a json structure
